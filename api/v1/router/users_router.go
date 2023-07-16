@@ -107,7 +107,7 @@ func GetSeller(c *gin.Context) {
 // @Summary Register a new user
 // @Description Register as a new user
 // @Tags User
-// @Param Body body config.UserCreate true "the body to login as user"
+// @Param Body body config.UserCreate true "the body to register as a user"
 // @Produce json
 // @Success 200 {object} config.UserOutput
 // @Router /user/register [post]
@@ -275,7 +275,7 @@ func UpdateUserData(c *gin.Context) {
 
 // Update user to seller godoc
 // @Summary Update user to seller
-// @Description Update user to seller
+// @Description Update user to seller. Must re-login to get a new access token
 // @Tags User
 // @Param Authorization header string true "User Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
 // @Security BearerToken

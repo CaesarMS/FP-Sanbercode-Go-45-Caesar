@@ -32,8 +32,6 @@ definitions:
     type: object
   config.InvoiceInput:
     properties:
-      buyer_id:
-        type: string
       items:
         items:
           $ref: '#/definitions/config.InvoiceItemInput'
@@ -247,7 +245,7 @@ paths:
     post:
       description: Register by username & password
       parameters:
-      - description: the body to login as admin
+      - description: the body to register as admin
         in: body
         name: Body
         required: true
@@ -675,7 +673,7 @@ paths:
     post:
       description: Register as a new user
       parameters:
-      - description: the body to login as user
+      - description: the body to register as a user
         in: body
         name: Body
         required: true
@@ -693,7 +691,7 @@ paths:
       - User
   /user/seller:
     patch:
-      description: Update user to seller
+      description: Update user to seller. Must re-login to get a new access token
       parameters:
       - description: 'User Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
         in: header

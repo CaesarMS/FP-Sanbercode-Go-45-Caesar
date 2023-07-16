@@ -187,7 +187,7 @@ const docTemplate = `{
                 "summary": "Register a new admin",
                 "parameters": [
                     {
-                        "description": "the body to login as admin",
+                        "description": "the body to register as admin",
                         "name": "Body",
                         "in": "body",
                         "required": true,
@@ -858,7 +858,7 @@ const docTemplate = `{
                 "summary": "Register a new user",
                 "parameters": [
                     {
-                        "description": "the body to login as user",
+                        "description": "the body to register as a user",
                         "name": "Body",
                         "in": "body",
                         "required": true,
@@ -884,7 +884,7 @@ const docTemplate = `{
                         "BearerToken": []
                     }
                 ],
-                "description": "Update user to seller",
+                "description": "Update user to seller. Must re-login to get a new access token",
                 "produces": [
                     "application/json"
                 ],
@@ -965,9 +965,6 @@ const docTemplate = `{
         "config.InvoiceInput": {
             "type": "object",
             "properties": {
-                "buyer_id": {
-                    "type": "string"
-                },
                 "items": {
                     "type": "array",
                     "items": {
