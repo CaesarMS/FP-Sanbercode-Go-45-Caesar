@@ -108,9 +108,10 @@ func InsertCategory(c *gin.Context) {
 }
 
 // Update a new category godoc
-// @Summary Insert a new category by admin
+// @Summary Update a category by admin
 // @Description Insert a new category by admin
 // @Tags Category
+// @Param Body body config.CategoryInput true "the body to update a category"
 // @Param id path string true "Category id in UUID format"
 // @Param Authorization header string true "Admin Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
 // @Security BearerToken
