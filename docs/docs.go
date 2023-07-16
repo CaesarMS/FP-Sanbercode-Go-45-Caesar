@@ -325,54 +325,6 @@ const docTemplate = `{
                         }
                     }
                 }
-            },
-            "patch": {
-                "security": [
-                    {
-                        "BearerToken": []
-                    }
-                ],
-                "description": "Update a category by admin",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Category"
-                ],
-                "summary": "Update a category by admin",
-                "parameters": [
-                    {
-                        "description": "the body to update a category",
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/config.CategoryInput"
-                        }
-                    },
-                    {
-                        "type": "string",
-                        "description": "Category id in UUID format",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Admin Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/config.CategoryOutput"
-                        }
-                    }
-                }
             }
         },
         "/category/": {
@@ -418,7 +370,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/category/:id": {
+        "/category/{id}": {
             "delete": {
                 "security": [
                     {
@@ -434,6 +386,54 @@ const docTemplate = `{
                 ],
                 "summary": "Delete a category by admin",
                 "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Category id in UUID format",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Admin Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/config.CategoryOutput"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ],
+                "description": "Update a category by admin",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Update a category by admin",
+                "parameters": [
+                    {
+                        "description": "the body to update a category",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/config.CategoryInput"
+                        }
+                    },
                     {
                         "type": "string",
                         "description": "Category id in UUID format",
@@ -615,7 +615,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/product/:id": {
+        "/product/{id}": {
             "delete": {
                 "security": [
                     {

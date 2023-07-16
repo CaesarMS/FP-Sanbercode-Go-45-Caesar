@@ -117,7 +117,7 @@ func InsertCategory(c *gin.Context) {
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.CategoryOutput
-// @Router /category [patch]
+// @Router /category/{id} [patch]
 func UpdateCategory(c *gin.Context) {
 	// get db from gin context
 	db := c.MustGet("db").(*gorm.DB)
@@ -158,7 +158,7 @@ func UpdateCategory(c *gin.Context) {
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.CategoryOutput
-// @Router /category/:id [delete]
+// @Router /category/{id} [delete]
 func DeleteCategory(c *gin.Context) {
 	// get db from gin context
 	db := c.MustGet("db").(*gorm.DB)

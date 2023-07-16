@@ -129,7 +129,7 @@ func InsertProduct(c *gin.Context) {
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.UserOutput
-// @Router /product/:id [patch]
+// @Router /product/{id} [patch]
 func UpdateProduct(c *gin.Context) {
 	// get db from gin context
 	db := c.MustGet("db").(*gorm.DB)
@@ -192,7 +192,7 @@ func UpdateProduct(c *gin.Context) {
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.ProductOutput
-// @Router /product/:id [delete]
+// @Router /product/{id} [delete]
 func DeleteProduct(c *gin.Context) {
 	// get db from gin context
 	db := c.MustGet("db").(*gorm.DB)

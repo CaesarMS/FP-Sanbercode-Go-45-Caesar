@@ -340,6 +340,59 @@ paths:
       summary: Get categories list
       tags:
       - Category
+  /category/:
+    post:
+      description: Insert a new category by admin
+      parameters:
+      - description: the body to insert a new category
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.CategoryInput'
+      - description: 'Admin Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.CategoryOutput'
+      security:
+      - BearerToken: []
+      summary: Insert a new category by admin
+      tags:
+      - Category
+  /category/{id}:
+    delete:
+      description: Delete a category by admin
+      parameters:
+      - description: Category id in UUID format
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 'Admin Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.CategoryOutput'
+      security:
+      - BearerToken: []
+      summary: Delete a category by admin
+      tags:
+      - Category
     patch:
       description: Update a category by admin
       parameters:
@@ -369,59 +422,6 @@ paths:
       security:
       - BearerToken: []
       summary: Update a category by admin
-      tags:
-      - Category
-  /category/:
-    post:
-      description: Insert a new category by admin
-      parameters:
-      - description: the body to insert a new category
-        in: body
-        name: Body
-        required: true
-        schema:
-          $ref: '#/definitions/config.CategoryInput'
-      - description: 'Admin Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/config.CategoryOutput'
-      security:
-      - BearerToken: []
-      summary: Insert a new category by admin
-      tags:
-      - Category
-  /category/:id:
-    delete:
-      description: Delete a category by admin
-      parameters:
-      - description: Category id in UUID format
-        in: path
-        name: id
-        required: true
-        type: string
-      - description: 'Admin Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
-        in: header
-        name: Authorization
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/config.CategoryOutput'
-      security:
-      - BearerToken: []
-      summary: Delete a category by admin
       tags:
       - Category
   /invoice:
@@ -523,7 +523,7 @@ paths:
       summary: Create a new product by seller
       tags:
       - Product
-  /product/:id:
+  /product/{id}:
     delete:
       description: Delete product
       parameters:
