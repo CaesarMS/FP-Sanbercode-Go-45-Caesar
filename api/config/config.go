@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/CaesarMS/FP-Sanbercode-Go-45-Caesar/internal/model"
 	"github.com/CaesarMS/FP-Sanbercode-Go-45-Caesar/pkg/util"
@@ -16,6 +17,14 @@ func ConnectDataBase() *gorm.DB {
 	host := util.GetEnv("DB_HOST", "127.0.0.1")
 	port := util.GetEnv("DB_PORT", "3306")
 	database := util.GetEnv("DB_NAME", "sanbercode_final-project")
+
+	log.Println(
+		username,
+		password,
+		host,
+		port,
+		database,
+	)
 
 	dsn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", username, password, host, port, database)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
