@@ -3,7 +3,6 @@ package util
 import (
 	"errors"
 	"fmt"
-	"log"
 	"os"
 	"regexp"
 	"strconv"
@@ -16,17 +15,17 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func GetEnv(key string) (string, error) {
+func GetEnv(key, fallback string) string {
 	err := godotenv.Load()
 	if err != nil {
-		log.Println(err.Error())
-		panic(err.Error())
+		return fallback
 	}
 
 	if value, ok := os.LookupEnv(key); ok {
-		return value, nil
+		return value
 	}
-	return "", errors.New("env not found")
+
+	return fallback
 }
 
 func GenerateUUID() string {
@@ -47,10 +46,7 @@ func VerifyPassword(password, hashedPassword string) error {
 }
 
 func GenerateToken(id string, memberLevel uint) (string, error) {
-	expiryTime, err := GetEnv("JWT_EXPIRY")
-	if err != nil {
-		return "", err
-	}
+	expiryTime := GetEnv("JWT_EXPIRY", "86400")
 
 	token_lifespan, err := strconv.Atoi(expiryTime)
 	if err != nil {
@@ -80,19 +76,13 @@ func GenerateToken(id string, memberLevel uint) (string, error) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	jwtSecret, err := GetEnv("JWT_KEY")
-	if err != nil {
-		return "", err
-	}
+	jwtSecret := GetEnv("JWT_KEY", "3ea7ac596cb207cb2ec4dffcabb1130bec74a08c")
 
 	return token.SignedString([]byte(jwtSecret))
 }
 
 func VerifyJWT(token, scopeTarget string) error {
-	jwtSecret, err := GetEnv("JWT_KEY")
-	if err != nil {
-		return err
-	}
+	jwtSecret := GetEnv("JWT_KEY", "3ea7ac596cb207cb2ec4dffcabb1130bec74a08c")
 
 	tokenResult, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
@@ -113,7 +103,7 @@ func VerifyJWT(token, scopeTarget string) error {
 }
 
 func ExtractTokenId(token string) string {
-	jwtSecret, _ := GetEnv("JWT_KEY")
+	jwtSecret := GetEnv("JWT_KEY", "3ea7ac596cb207cb2ec4dffcabb1130bec74a08c")
 
 	tokenResult, _ := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {

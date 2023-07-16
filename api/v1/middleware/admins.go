@@ -11,14 +11,7 @@ import (
 
 func AdminKeyMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		adminKey, err := util.GetEnv("API_KEY_ADMIN")
-		if err != nil {
-			c.JSON(http.StatusUnauthorized, config.Response{
-				Error: err.Error(),
-			})
-			c.Abort()
-			return
-		}
+		adminKey := util.GetEnv("API_KEY_ADMIN", "2a933190-eeaf-451f-9635-6f3e9d319ca1")
 
 		if adminKey != c.Request.Header.Get("x-api-key") {
 			c.JSON(http.StatusUnauthorized, config.Response{

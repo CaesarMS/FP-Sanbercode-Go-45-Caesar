@@ -11,32 +11,13 @@ import (
 )
 
 func ConnectDataBase() *gorm.DB {
-	db_username, err := util.GetEnv("DB_USERNAME")
-	if err != nil {
-		panic(err.Error())
-	}
-	username := db_username
+	username := util.GetEnv("DATABASE_USERNAME", "root")
+	password := util.GetEnv("DATABASE_PASSWORD", "root")
+	host := util.GetEnv("DATABASE_HOST", "127.0.0.1")
+	port := util.GetEnv("DATABASE_PORT", "3306")
+	database := util.GetEnv("DATABASE_NAME", "sanbercode_final-project")
 
-	db_password, err := util.GetEnv("DB_PASSWORD")
-	if err != nil {
-		panic(err.Error())
-	}
-	password := db_password
-
-	db_host, err := util.GetEnv("DB_HOST")
-	if err != nil {
-		panic(err.Error())
-	}
-	host := "tcp(" + db_host + ")"
-
-	db_name, err := util.GetEnv("DB_NAME")
-	if err != nil {
-		panic(err.Error())
-	}
-	database := db_name
-
-	dsn := fmt.Sprintf("%v:%v@%v/%v?charset=utf8mb4&parseTime=True&loc=Local", username, password, host, database)
-
+	dsn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", username, password, host, port, database)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {

@@ -9,10 +9,7 @@ import (
 )
 
 func init() {
-	environment, err := util.GetEnv("NODE_ENV")
-	if err != nil {
-		panic(err.Error())
-	}
+	environment := util.GetEnv("NODE_ENV", "development")
 
 	if environment == "development" {
 		//programmatically set swagger info
