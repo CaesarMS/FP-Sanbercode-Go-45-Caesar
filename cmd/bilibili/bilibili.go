@@ -14,7 +14,7 @@ func init() {
 	if environment == "development" {
 		//programmatically set swagger info
 		docs.SwaggerInfo.Title = "Bili-Bili Marketplace API"
-		docs.SwaggerInfo.Description = "Admin Register x-api-key = 9c6f9769-6d5b-493d-ae2e-4fad70711564"
+		docs.SwaggerInfo.Description = "Bili-Bili API Example by Caesar"
 		docs.SwaggerInfo.Version = "1.0"
 		docs.SwaggerInfo.Host = "localhost:8080"
 		docs.SwaggerInfo.Schemes = []string{"http", "https"}

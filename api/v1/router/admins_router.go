@@ -118,7 +118,7 @@ func AuthenticateAdmin(c *gin.Context) {
 // @Description Register by username & password
 // @Tags Admin
 // @Param Body body config.AdminAuth true "the body to login as admin"
-// @Param x-api-key header string true "API Key"
+// @Param x-api-key header string true "API Key: 9c6f9769-6d5b-493d-ae2e-4fad70711564"
 // @Security x-api-key
 // @Produce json
 // @Success 200 {object} config.AdminOutput

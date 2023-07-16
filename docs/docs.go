@@ -46,7 +46,7 @@ const docTemplate = `{
                     },
                     {
                         "type": "string",
-                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "description": "Admin Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
                         "name": "Authorization",
                         "in": "header",
                         "required": true
@@ -80,7 +80,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "description": "Admin Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
                         "name": "Authorization",
                         "in": "header",
                         "required": true
@@ -154,7 +154,7 @@ const docTemplate = `{
                     },
                     {
                         "type": "string",
-                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "description": "Admin Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
                         "name": "Authorization",
                         "in": "header",
                         "required": true
@@ -197,7 +197,7 @@ const docTemplate = `{
                     },
                     {
                         "type": "string",
-                        "description": "API Key",
+                        "description": "API Key: 9c6f9769-6d5b-493d-ae2e-4fad70711564",
                         "name": "x-api-key",
                         "in": "header",
                         "required": true
@@ -713,7 +713,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "description": "User Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
                         "name": "Authorization",
                         "in": "header",
                         "required": true
@@ -756,7 +756,7 @@ const docTemplate = `{
                     },
                     {
                         "type": "string",
-                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "description": "User Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
                         "name": "Authorization",
                         "in": "header",
                         "required": true
@@ -830,7 +830,7 @@ const docTemplate = `{
                     },
                     {
                         "type": "string",
-                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "description": "User Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
                         "name": "Authorization",
                         "in": "header",
                         "required": true
@@ -895,7 +895,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
+                        "description": "User Authorization. How to input in swagger : 'Bearer \u003cinsert_your_token_here\u003e'",
                         "name": "Authorization",
                         "in": "header",
                         "required": true
