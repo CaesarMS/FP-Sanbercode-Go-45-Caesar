@@ -423,8 +423,17 @@ const docTemplate = `{
                 "tags": [
                     "Category"
                 ],
-                "summary": "Insert a new category by admin",
+                "summary": "Update a category by admin",
                 "parameters": [
+                    {
+                        "description": "the body to update a category",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/config.CategoryInput"
+                        }
+                    },
                     {
                         "type": "string",
                         "description": "Category id in UUID format",

@@ -396,6 +396,12 @@ paths:
     patch:
       description: Insert a new category by admin
       parameters:
+      - description: the body to update a category
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.CategoryInput'
       - description: Category id in UUID format
         in: path
         name: id
@@ -415,7 +421,7 @@ paths:
             $ref: '#/definitions/config.CategoryOutput'
       security:
       - BearerToken: []
-      summary: Insert a new category by admin
+      summary: Update a category by admin
       tags:
       - Category
   /invoice:
