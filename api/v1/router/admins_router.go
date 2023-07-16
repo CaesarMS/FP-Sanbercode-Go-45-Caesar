@@ -18,7 +18,7 @@ import (
 // @Tags Admin
 // @Param id query string false "insert admin id in UUID format"
 // @Param username query string false "insert admin username"
-// @Param Authorization header string true "Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
+// @Param Authorization header string true "Admin Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.AdminOutput
@@ -155,7 +155,7 @@ func InsertAdmin(c *gin.Context) {
 // @Description Update admin password
 // @Tags Admin
 // @Param Body body config.AdminUpdate true "the body to login as admin"
-// @Param Authorization header string true "Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
+// @Param Authorization header string true "Admin Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.AdminOutput
@@ -202,7 +202,7 @@ func UpdateAdminPassword(c *gin.Context) {
 // @Summary Delete admin
 // @Description Delete admin
 // @Tags Admin
-// @Param Authorization header string true "Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
+// @Param Authorization header string true "Admin Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.AdminOutput

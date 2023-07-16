@@ -181,7 +181,7 @@ func AuthenticateUser(c *gin.Context) {
 // @Description Update user password
 // @Tags User
 // @Param Body body config.UserUpdatePassword true "the body to login as user"
-// @Param Authorization header string true "Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
+// @Param Authorization header string true "User Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.UserOutput
@@ -230,7 +230,7 @@ func UpdateUserPassword(c *gin.Context) {
 // @Description Update user data
 // @Tags User
 // @Param Body body config.UserUpdateData true "the body to login as user"
-// @Param Authorization header string true "Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
+// @Param Authorization header string true "User Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.UserOutput
@@ -277,7 +277,7 @@ func UpdateUserData(c *gin.Context) {
 // @Summary Update user to seller
 // @Description Update user to seller
 // @Tags User
-// @Param Authorization header string true "Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
+// @Param Authorization header string true "User Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.UserOutput
@@ -315,7 +315,7 @@ func UpdateUserToSeller(c *gin.Context) {
 // @Summary Delete user
 // @Description Delete user
 // @Tags User
-// @Param Authorization header string true "Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
+// @Param Authorization header string true "User Authorization. How to input in swagger : 'Bearer <insert_your_token_here>'"
 // @Security BearerToken
 // @Produce json
 // @Success 200 {object} config.AdminOutput
