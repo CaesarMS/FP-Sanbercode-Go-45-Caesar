@@ -14,7 +14,7 @@ import (
 func ConnectDataBase() *gorm.DB {
 	username := util.GetEnv("DB_USERNAME", "root")
 	password := util.GetEnv("DB_PASSWORD", "root")
-	host := util.GetEnv("DB_HOST", "127.0.0.1")
+	host := util.GetEnv("DB_HOST", "0.0.0.0")
 	port := util.GetEnv("DB_PORT", "3306")
 	database := util.GetEnv("DB_NAME", "sanbercode_final-project")
 
