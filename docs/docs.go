@@ -416,7 +416,7 @@ const docTemplate = `{
                         "BearerToken": []
                     }
                 ],
-                "description": "Insert a new category by admin",
+                "description": "Update a category by admin",
                 "produces": [
                     "application/json"
                 ],

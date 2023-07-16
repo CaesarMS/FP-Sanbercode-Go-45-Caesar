@@ -394,7 +394,7 @@ paths:
       tags:
       - Category
     patch:
-      description: Insert a new category by admin
+      description: Update a category by admin
       parameters:
       - description: the body to update a category
         in: body

@@ -107,9 +107,9 @@ func InsertCategory(c *gin.Context) {
 	})
 }
 
-// Update a new category godoc
+// Update a category godoc
 // @Summary Update a category by admin
-// @Description Insert a new category by admin
+// @Description Update a category by admin
 // @Tags Category
 // @Param Body body config.CategoryInput true "the body to update a category"
 // @Param id path string true "Category id in UUID format"
