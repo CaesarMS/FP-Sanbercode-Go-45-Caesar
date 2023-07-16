@@ -1,0 +1,715 @@
+definitions:
+  config.AdminAuth:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  config.AdminOutput:
+    properties:
+      id:
+        type: string
+      username:
+        type: string
+    type: object
+  config.AdminUpdate:
+    properties:
+      password:
+        type: string
+    type: object
+  config.CategoryInput:
+    properties:
+      name:
+        type: string
+    type: object
+  config.CategoryOutput:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  config.InvoiceInput:
+    properties:
+      buyer_id:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/config.InvoiceItemInput'
+        type: array
+    type: object
+  config.InvoiceItemInput:
+    properties:
+      product_id:
+        type: string
+      qty:
+        type: integer
+    type: object
+  config.InvoiceItemOutput:
+    properties:
+      id:
+        type: string
+      price:
+        type: integer
+      product_name:
+        type: string
+      qty:
+        type: integer
+    type: object
+  config.InvoiceOutput:
+    properties:
+      bought_at:
+        type: string
+      buyer_name:
+        type: string
+      id:
+        type: string
+      items:
+        items:
+          $ref: '#/definitions/config.InvoiceItemOutput'
+        type: array
+      total_price:
+        type: integer
+    type: object
+  config.ProductInput:
+    properties:
+      category_id:
+        type: string
+      description:
+        type: string
+      name:
+        type: string
+      price:
+        type: integer
+      stock:
+        type: integer
+    type: object
+  config.ProductOutput:
+    properties:
+      category:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      price:
+        type: integer
+      seller:
+        type: string
+      stock:
+        type: integer
+    type: object
+  config.UserAuth:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  config.UserCreate:
+    properties:
+      address:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+    type: object
+  config.UserOutput:
+    properties:
+      address:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  config.UserUpdateData:
+    properties:
+      address:
+        type: string
+      name:
+        type: string
+    type: object
+  config.UserUpdatePassword:
+    properties:
+      password:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /admin:
+    get:
+      description: Get all admins, by id, or by username (select one)
+      parameters:
+      - description: insert admin id in UUID format
+        in: query
+        name: id
+        type: string
+      - description: insert admin username
+        in: query
+        name: username
+        type: string
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.AdminOutput'
+      security:
+      - BearerToken: []
+      summary: Get admins list
+      tags:
+      - Admin
+  /admin/:
+    delete:
+      description: Delete admin
+      parameters:
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.AdminOutput'
+      security:
+      - BearerToken: []
+      summary: Delete admin
+      tags:
+      - Admin
+  /admin/login:
+    post:
+      description: Authenticate admin username & password
+      parameters:
+      - description: the body to login as admin
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.AdminAuth'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.AdminOutput'
+      summary: Login admin authenticate
+      tags:
+      - Admin
+  /admin/password:
+    patch:
+      description: Update admin password
+      parameters:
+      - description: the body to login as admin
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.AdminUpdate'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.AdminOutput'
+      security:
+      - BearerToken: []
+      summary: Update admin password
+      tags:
+      - Admin
+  /admin/register:
+    post:
+      description: Register by username & password
+      parameters:
+      - description: the body to login as admin
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.AdminAuth'
+      - description: API Key
+        in: header
+        name: x-api-key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.AdminOutput'
+      security:
+      - x-api-key: []
+      summary: Register a new admin
+      tags:
+      - Admin
+  /admin/seller:
+    get:
+      description: Get all seller
+      parameters:
+      - description: 'Admin Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.UserOutput'
+      security:
+      - BearerToken: []
+      summary: Get seller list by admin
+      tags:
+      - Admin
+  /admin/user:
+    get:
+      description: Get all user, by id, or by email (select one)
+      parameters:
+      - description: insert user id in UUID format
+        in: query
+        name: id
+        type: string
+      - description: insert user email
+        in: query
+        name: email
+        type: string
+      - description: 'Admin Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.UserOutput'
+      security:
+      - BearerToken: []
+      summary: Get user list by admin
+      tags:
+      - Admin
+  /category:
+    get:
+      description: Get all categories, by id, or by name (select one)
+      parameters:
+      - description: insert category id in UUID format
+        in: query
+        name: id
+        type: string
+      - description: insert category name
+        in: query
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.CategoryOutput'
+      summary: Get categories list
+      tags:
+      - Category
+  /category/:
+    post:
+      description: Insert a new category by admin
+      parameters:
+      - description: the body to insert a new category
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.CategoryInput'
+      - description: 'Admin Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.CategoryOutput'
+      security:
+      - BearerToken: []
+      summary: Insert a new category by admin
+      tags:
+      - Category
+  /category/:id:
+    delete:
+      description: Delete a category by admin
+      parameters:
+      - description: Category id in UUID format
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 'Admin Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.CategoryOutput'
+      security:
+      - BearerToken: []
+      summary: Delete a category by admin
+      tags:
+      - Category
+    patch:
+      description: Insert a new category by admin
+      parameters:
+      - description: Category id in UUID format
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 'Admin Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.CategoryOutput'
+      security:
+      - BearerToken: []
+      summary: Insert a new category by admin
+      tags:
+      - Category
+  /invoice:
+    get:
+      description: Get all invoice or by id (select one)
+      parameters:
+      - description: insert invoice id in UUID format
+        in: query
+        name: id
+        type: string
+      - description: 'User Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.InvoiceOutput'
+      security:
+      - BearerToken: []
+      summary: Get invoice list by buyer
+      tags:
+      - Invoice
+    post:
+      description: Create a new invoice as a buyer
+      parameters:
+      - description: the body to create a new invoice
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.InvoiceInput'
+      - description: 'User Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.InvoiceOutput'
+      security:
+      - BearerToken: []
+      summary: Create a new invoice by buyer
+      tags:
+      - Invoice
+  /product:
+    get:
+      description: Get all product, by id, or by category name (select one)
+      parameters:
+      - description: insert product id in UUID format
+        in: query
+        name: id
+        type: string
+      - description: insert product category name
+        in: query
+        name: category
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.ProductOutput'
+      summary: Get product list
+      tags:
+      - Product
+    post:
+      description: Create a new product as a seller
+      parameters:
+      - description: the body to create a new product
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.ProductInput'
+      - description: 'Seller Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.ProductOutput'
+      security:
+      - BearerToken: []
+      summary: Create a new product by seller
+      tags:
+      - Product
+  /product/:id:
+    delete:
+      description: Delete product
+      parameters:
+      - description: Product id in UUID format
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 'Seller Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.ProductOutput'
+      security:
+      - BearerToken: []
+      summary: Delete product
+      tags:
+      - Product
+    patch:
+      description: Update product data
+      parameters:
+      - description: Product id in UUID format
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: the body to update a product
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.ProductInput'
+      - description: 'Seller Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.UserOutput'
+      security:
+      - BearerToken: []
+      summary: Update product data
+      tags:
+      - Product
+  /user/:
+    delete:
+      description: Delete user
+      parameters:
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.AdminOutput'
+      security:
+      - BearerToken: []
+      summary: Delete user
+      tags:
+      - User
+  /user/data:
+    patch:
+      description: Update user data
+      parameters:
+      - description: the body to login as user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.UserUpdateData'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.UserOutput'
+      security:
+      - BearerToken: []
+      summary: Update user data
+      tags:
+      - User
+  /user/login:
+    post:
+      description: Authenticate user email & password
+      parameters:
+      - description: the body to login as user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.UserAuth'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.UserOutput'
+      summary: Login user authenticate
+      tags:
+      - User
+  /user/password:
+    patch:
+      description: Update user password
+      parameters:
+      - description: the body to login as user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.UserUpdatePassword'
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.UserOutput'
+      security:
+      - BearerToken: []
+      summary: Update user password
+      tags:
+      - User
+  /user/register:
+    post:
+      description: Register as a new user
+      parameters:
+      - description: the body to login as user
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/config.UserCreate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.UserOutput'
+      summary: Register a new user
+      tags:
+      - User
+  /user/seller:
+    patch:
+      description: Update user to seller
+      parameters:
+      - description: 'Authorization. How to input in swagger : ''Bearer <insert_your_token_here>'''
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/config.UserOutput'
+      security:
+      - BearerToken: []
+      summary: Update user to seller
+      tags:
+      - User
+swagger: "2.0"
