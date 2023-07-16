@@ -11,16 +11,10 @@ import (
 
 	"github.com/golang-jwt/jwt"
 	"github.com/google/uuid"
-	"github.com/joho/godotenv"
 	"golang.org/x/crypto/bcrypt"
 )
 
 func GetEnv(key, fallback string) string {
-	err := godotenv.Load()
-	if err != nil {
-		return fallback
-	}
-
 	if value, ok := os.LookupEnv(key); ok {
 		return value
 	}
