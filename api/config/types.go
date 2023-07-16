@@ -80,8 +80,7 @@ type InvoiceItemInput struct {
 }
 
 type InvoiceInput struct {
-	Buyer_id string             `json:"buyer_id"`
-	Items    []InvoiceItemInput `json:"items"`
+	Items []InvoiceItemInput `json:"items"`
 }
 
 type InvoiceItemOutput struct {
