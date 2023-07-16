@@ -11,11 +11,11 @@ import (
 )
 
 func ConnectDataBase() *gorm.DB {
-	username := util.GetEnv("DATABASE_USERNAME", "root")
-	password := util.GetEnv("DATABASE_PASSWORD", "root")
-	host := util.GetEnv("DATABASE_HOST", "127.0.0.1")
-	port := util.GetEnv("DATABASE_PORT", "3306")
-	database := util.GetEnv("DATABASE_NAME", "sanbercode_final-project")
+	username := util.GetEnv("DB_USERNAME", "root")
+	password := util.GetEnv("DB_PASSWORD", "root")
+	host := util.GetEnv("DB_HOST", "127.0.0.1")
+	port := util.GetEnv("DB_PORT", "3306")
+	database := util.GetEnv("DB_NAME", "sanbercode_final-project")
 
 	dsn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", username, password, host, port, database)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
