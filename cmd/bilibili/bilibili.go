@@ -16,7 +16,7 @@ func init() {
 		docs.SwaggerInfo.Title = "Bili-Bili Marketplace API"
 		docs.SwaggerInfo.Description = "Bili-Bili API Example by Caesar"
 		docs.SwaggerInfo.Version = "1.0"
-		docs.SwaggerInfo.Host = "localhost:8080"
+		docs.SwaggerInfo.Host = "fp-sanbercode-go-45-caesar-production.up.railway.app"
 		docs.SwaggerInfo.Schemes = []string{"http", "https"}
 	}
 
